@@ -6,6 +6,7 @@ import {getByLabelText, render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import Login from '../../components/login'
 import faker from 'faker'
+const {build, fake} = require('@jackfranklin/test-data-bot')
 
 test('submitting the form calls onSubmit with username and password', () => {
   // 🐨 create a variable called "submittedData" and a handleSubmit function that
@@ -25,14 +26,27 @@ test('submitting the form calls onSubmit with username and password', () => {
   // 🐨 use userEvent.type to change the username and password fields to
   //    whatever you want
 
-  function buildLoginForm(otherProps) {
-    return {
-      username: faker.internet.userName(),
-      password: faker.internet.password(),
-      ...otherProps,
-    }
-  }
-  const {username, password} = buildLoginForm()
+  // function buildLoginForm(otherProps) {
+  //   return {
+  //     username: faker.internet.userName(),
+  //     password: faker.internet.password(),
+  //     ...otherProps,
+  //   }
+  // }
+  // const {username, password} = buildLoginForm()
+
+  const buildLoginForm = build('User', {
+    fields: {
+      username: fake(f => f.name.findName()), //?
+      password: fake(f => f.internet.password()), //?
+    },
+  })
+  const {username, password} = buildLoginForm({
+    overrides: {
+      username: 'blah',
+      password: 'jack',
+    },
+  })
   //
   userEvent.type(usernameLabel, username)
   userEvent.type(passwordLabel, password)
