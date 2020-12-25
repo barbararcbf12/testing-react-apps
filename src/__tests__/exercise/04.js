@@ -25,10 +25,11 @@ test('submitting the form calls onSubmit with username and password', () => {
   // 🐨 use userEvent.type to change the username and password fields to
   //    whatever you want
 
-  function buildLoginForm() {
+  function buildLoginForm(otherProps) {
     return {
       username: faker.internet.userName(),
       password: faker.internet.password(),
+      ...otherProps,
     }
   }
   const {username, password} = buildLoginForm()
@@ -38,6 +39,7 @@ test('submitting the form calls onSubmit with username and password', () => {
   // 🐨 click on the button with the text "Submit"
   //
   userEvent.click(screen.getByRole('button', {name: 'Submit'}))
+  console.log('username & password', username + ' & ' + password)
 
   // assert that submittedData is correct
   // 💰 use `toEqual` from Jest: 📜 https://jestjs.io/docs/en/expect#toequalvalue
