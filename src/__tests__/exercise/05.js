@@ -62,7 +62,7 @@ test(`logging in displays the user's username`, async () => {
 })
 
 test(`logging error - no username provided`, async () => {
-  render(<Login />)
+  const container = render(<Login />)
   const {username, password} = buildLoginForm()
 
   userEvent.type(screen.getByLabelText(/username/i), '')
@@ -72,11 +72,145 @@ test(`logging error - no username provided`, async () => {
 
   waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
 
-  expect(screen.findByText('username required')).toBeTruthy
+  // expect(screen.findByText('username required')).toBeTruthy
+  expect(container).toMatchInlineSnapshot(`
+    Object {
+      "asFragment": [Function],
+      "baseElement": <body>
+        <div>
+          <form>
+            <div>
+              <label
+                for="username-field"
+              >
+                Username
+              </label>
+              <input
+                id="username-field"
+                name="username"
+                type="text"
+              />
+            </div>
+            <div>
+              <label
+                for="password-field"
+              >
+                Password
+              </label>
+              <input
+                id="password-field"
+                name="password"
+                type="password"
+              />
+            </div>
+            <div>
+              <button
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+          <div
+            style="height: 200px;"
+          />
+        </div>
+      </body>,
+      "container": <div>
+        <form>
+          <div>
+            <label
+              for="username-field"
+            >
+              Username
+            </label>
+            <input
+              id="username-field"
+              name="username"
+              type="text"
+            />
+          </div>
+          <div>
+            <label
+              for="password-field"
+            >
+              Password
+            </label>
+            <input
+              id="password-field"
+              name="password"
+              type="password"
+            />
+          </div>
+          <div>
+            <button
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+        <div
+          style="height: 200px;"
+        />
+      </div>,
+      "debug": [Function],
+      "findAllByAltText": [Function],
+      "findAllByDisplayValue": [Function],
+      "findAllByLabelText": [Function],
+      "findAllByPlaceholderText": [Function],
+      "findAllByRole": [Function],
+      "findAllByTestId": [Function],
+      "findAllByText": [Function],
+      "findAllByTitle": [Function],
+      "findByAltText": [Function],
+      "findByDisplayValue": [Function],
+      "findByLabelText": [Function],
+      "findByPlaceholderText": [Function],
+      "findByRole": [Function],
+      "findByTestId": [Function],
+      "findByText": [Function],
+      "findByTitle": [Function],
+      "getAllByAltText": [Function],
+      "getAllByDisplayValue": [Function],
+      "getAllByLabelText": [Function],
+      "getAllByPlaceholderText": [Function],
+      "getAllByRole": [Function],
+      "getAllByTestId": [Function],
+      "getAllByText": [Function],
+      "getAllByTitle": [Function],
+      "getByAltText": [Function],
+      "getByDisplayValue": [Function],
+      "getByLabelText": [Function],
+      "getByPlaceholderText": [Function],
+      "getByRole": [Function],
+      "getByTestId": [Function],
+      "getByText": [Function],
+      "getByTitle": [Function],
+      "queryAllByAltText": [Function],
+      "queryAllByDisplayValue": [Function],
+      "queryAllByLabelText": [Function],
+      "queryAllByPlaceholderText": [Function],
+      "queryAllByRole": [Function],
+      "queryAllByTestId": [Function],
+      "queryAllByText": [Function],
+      "queryAllByTitle": [Function],
+      "queryByAltText": [Function],
+      "queryByDisplayValue": [Function],
+      "queryByLabelText": [Function],
+      "queryByPlaceholderText": [Function],
+      "queryByRole": [Function],
+      "queryByTestId": [Function],
+      "queryByText": [Function],
+      "queryByTitle": [Function],
+      "rerender": [Function],
+      "unmount": [Function],
+    }
+  `)
 })
 
 test(`logging error - no password provided`, async () => {
-  render(<Login />)
+  const container = render(<Login />)
   const {username, password} = buildLoginForm()
 
   userEvent.type(screen.getByLabelText(/username/i), username)
@@ -86,5 +220,139 @@ test(`logging error - no password provided`, async () => {
 
   waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
 
-  expect(screen.findByText('password required')).toBeTruthy
+  // expect(screen.findByText('password required')).toBeTruthy
+  expect(container).toMatchInlineSnapshot(`
+    Object {
+      "asFragment": [Function],
+      "baseElement": <body>
+        <div>
+          <form>
+            <div>
+              <label
+                for="username-field"
+              >
+                Username
+              </label>
+              <input
+                id="username-field"
+                name="username"
+                type="text"
+              />
+            </div>
+            <div>
+              <label
+                for="password-field"
+              >
+                Password
+              </label>
+              <input
+                id="password-field"
+                name="password"
+                type="password"
+              />
+            </div>
+            <div>
+              <button
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
+          </form>
+          <div
+            style="height: 200px;"
+          />
+        </div>
+      </body>,
+      "container": <div>
+        <form>
+          <div>
+            <label
+              for="username-field"
+            >
+              Username
+            </label>
+            <input
+              id="username-field"
+              name="username"
+              type="text"
+            />
+          </div>
+          <div>
+            <label
+              for="password-field"
+            >
+              Password
+            </label>
+            <input
+              id="password-field"
+              name="password"
+              type="password"
+            />
+          </div>
+          <div>
+            <button
+              type="submit"
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+        <div
+          style="height: 200px;"
+        />
+      </div>,
+      "debug": [Function],
+      "findAllByAltText": [Function],
+      "findAllByDisplayValue": [Function],
+      "findAllByLabelText": [Function],
+      "findAllByPlaceholderText": [Function],
+      "findAllByRole": [Function],
+      "findAllByTestId": [Function],
+      "findAllByText": [Function],
+      "findAllByTitle": [Function],
+      "findByAltText": [Function],
+      "findByDisplayValue": [Function],
+      "findByLabelText": [Function],
+      "findByPlaceholderText": [Function],
+      "findByRole": [Function],
+      "findByTestId": [Function],
+      "findByText": [Function],
+      "findByTitle": [Function],
+      "getAllByAltText": [Function],
+      "getAllByDisplayValue": [Function],
+      "getAllByLabelText": [Function],
+      "getAllByPlaceholderText": [Function],
+      "getAllByRole": [Function],
+      "getAllByTestId": [Function],
+      "getAllByText": [Function],
+      "getAllByTitle": [Function],
+      "getByAltText": [Function],
+      "getByDisplayValue": [Function],
+      "getByLabelText": [Function],
+      "getByPlaceholderText": [Function],
+      "getByRole": [Function],
+      "getByTestId": [Function],
+      "getByText": [Function],
+      "getByTitle": [Function],
+      "queryAllByAltText": [Function],
+      "queryAllByDisplayValue": [Function],
+      "queryAllByLabelText": [Function],
+      "queryAllByPlaceholderText": [Function],
+      "queryAllByRole": [Function],
+      "queryAllByTestId": [Function],
+      "queryAllByText": [Function],
+      "queryAllByTitle": [Function],
+      "queryByAltText": [Function],
+      "queryByDisplayValue": [Function],
+      "queryByLabelText": [Function],
+      "queryByPlaceholderText": [Function],
+      "queryByRole": [Function],
+      "queryByTestId": [Function],
+      "queryByText": [Function],
+      "queryByTitle": [Function],
+      "rerender": [Function],
+      "unmount": [Function],
+    }
+  `)
 })
