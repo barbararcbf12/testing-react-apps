@@ -10,6 +10,7 @@ import {build, fake} from '@jackfranklin/test-data-bot'
 import {rest} from 'msw'
 import {setupServer} from 'msw/node'
 import Login from '../../components/login-submission'
+import {handlers} from '../../test/server-handlers'
 
 const buildLoginForm = build({
   fields: {
@@ -29,6 +30,7 @@ const server = setupServer(
       return res(ctx.json({username: 'Barbara'}))
     },
   ),
+  ...handlers,
 )
 
 // 🐨 before all the tests, start the server with `server.listen()`
@@ -57,4 +59,32 @@ test(`logging in displays the user's username`, async () => {
   // we render the username.
   // 🐨 assert that the username is on the screen
   expect(screen.findByText('Barbara')).toBeTruthy
+})
+
+test(`logging error - no username provided`, async () => {
+  render(<Login />)
+  const {username, password} = buildLoginForm()
+
+  userEvent.type(screen.getByLabelText(/username/i), '')
+  userEvent.type(screen.getByLabelText(/password/i), password)
+
+  userEvent.click(screen.getByRole('button', {name: /submit/i}))
+
+  waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
+
+  expect(screen.findByText('username required')).toBeTruthy
+})
+
+test(`logging error - no password provided`, async () => {
+  render(<Login />)
+  const {username, password} = buildLoginForm()
+
+  userEvent.type(screen.getByLabelText(/username/i), username)
+  userEvent.type(screen.getByLabelText(/password/i), '')
+
+  userEvent.click(screen.getByRole('button', {name: /submit/i}))
+
+  waitForElementToBeRemoved(() => screen.queryByLabelText('loading'))
+
+  expect(screen.findByText('password required')).toBeTruthy
 })
